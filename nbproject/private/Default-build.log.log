@@ -1,0 +1,42 @@
+g++ -c -Wall -std=c++11 -pthread main.cc
+In file included from c:\mingw\include\unistd.h:36:0,
+                 from file_cache_impl.h:13,
+                 from main.cc:8:
+c:\mingw\include\io.h:301:14: error: 'off64_t' does not name a type
+ __CRT_INLINE off64_t lseek64 (int, off64_t, int);
+              ^
+c:\mingw\include\io.h:302:14: error: 'off64_t' does not name a type
+ __CRT_INLINE off64_t lseek64 (int fd, off64_t offset, int whence) {
+              ^
+In file included from file_cache_impl.h:13:0,
+                 from main.cc:8:
+c:\mingw\include\unistd.h:65:20: error: 'off_t' has not been declared
+ int ftruncate(int, off_t);
+                    ^
+In file included from main.cc:8:0:
+file_cache_impl.h:44:5: error: 'mutex' in namespace 'std' does not name a type
+     std::mutex m_;  
+     ^
+file_cache_impl.h:45:5: error: 'condition_variable' in namespace 'std' does not name a type
+     std::condition_variable cv_;
+     ^
+main.cc: In function 'int main(int, char**)':
+main.cc:63:5: error: 'thread' is not a member of 'std'
+     std::thread t1(threadfunc, std::ref(file_map1), fc);
+     ^
+main.cc:63:17: error: expected ';' before 't1'
+     std::thread t1(threadfunc, std::ref(file_map1), fc);
+                 ^
+main.cc:64:5: error: 'thread' is not a member of 'std'
+     std::thread t2(threadfunc, std::ref(file_map2), fc);
+     ^
+main.cc:64:17: error: expected ';' before 't2'
+     std::thread t2(threadfunc, std::ref(file_map2), fc);
+                 ^
+main.cc:65:5: error: 't1' was not declared in this scope
+     t1.join();
+     ^
+main.cc:66:5: error: 't2' was not declared in this scope
+     t2.join();
+     ^
+make.exe": *** [main.o] Error 1
